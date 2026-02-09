@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-canvas text-charcoal antialiased;
+  }
+
+  ::selection {
+    @apply bg-royal text-canvas;
+  }
+}
+
+@layer components {
+  .grain {
+    background-image: radial-gradient(rgba(27, 79, 191, 0.08) 1px, transparent 0);
+    background-size: 18px 18px;
+  }
+}

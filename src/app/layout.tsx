@@ -1,23 +1,25 @@
 import type { Metadata } from "next";
-import { Sora, Space_Grotesk } from "next/font/google";
-import "./globals.css";
+import { Inter, Playfair_Display } from "next/font/google";
+import "../styles/tailwind.css";
+import Footer from "../components/ui/Footer";
+import Header from "../components/ui/Header";
 
-const sora = Sora({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-sora",
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-heading",
+  weight: ["400", "500", "600", "700"],
 });
 
-const spaceGrotesk = Space_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-body",
   weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Lumina Learn",
+  title: "BRASA Netherlands",
   description:
-    "Premium ebooks and video learning crafted by top mentors. Focused, modern education for ambitious builders.",
+    "An artful learning library of clear, modern guides and mentor-led lessons for ambitious builders.",
 };
 
 export default function RootLayout({
@@ -28,9 +30,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sora.variable} ${spaceGrotesk.variable} bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100`}
+        className={`${playfair.variable} ${inter.variable} font-body`}
       >
-        {children}
+        <div className="min-h-screen bg-canvas text-charcoal">
+          <Header />
+          <div className="grain">
+            <main>{children}</main>
+          </div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
