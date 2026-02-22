@@ -1,11 +1,13 @@
 import LibraryGrid from "../../../components/library/LibraryGrid";
 import Section from "../../../components/ui/Section";
-import { getLibraryItems } from "../../../lib/sanity/queries";
+import { getContentProvider } from "../../../lib/content/provider";
+import { getRevalidateSeconds } from "../../../lib/revalidate";
 
-export const revalidate = 60;
+export const revalidate = getRevalidateSeconds();
 
 export default async function LibraryPage() {
-  const items = await getLibraryItems();
+  const provider = getContentProvider();
+  const items = await provider.getLibraryItems();
 
   return (
     <Section

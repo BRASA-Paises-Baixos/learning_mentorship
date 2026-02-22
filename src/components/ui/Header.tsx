@@ -1,43 +1,39 @@
 import Link from "next/link";
+import type { NavigationContent } from "../../lib/content/models";
 import Button from "./Button";
-import { getGumroadProductUrl } from "../../lib/gumroad/config";
 
-export default function Header() {
-  const gumroadUrl = getGumroadProductUrl();
-
+export default function Header({ content }: { content: NavigationContent }) {
   return (
-    <header className="border-b border-charcoal/10 bg-canvas/95">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5 sm:px-8 lg:px-12">
+    <header className="border-b border-foreground/10 bg-surface/95">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-gutter py-5">
         <div className="flex items-center gap-4">
-          <div className="h-10 w-10 rounded-full bg-royal/10 text-royal grid place-items-center font-heading text-lg">
-            A
+          <div className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 font-heading text-lg text-primary">
+            {content.brand.monogram}
           </div>
           <div>
-            <div className="font-heading text-lg font-semibold">BRASA Netherlands</div>
-            <div className="text-xs uppercase tracking-[0.22em] text-charcoal/50">
-              Mentorship Platform
+            <div className="font-heading text-lg font-semibold text-foreground">
+              {content.brand.name}
+            </div>
+            <div className="text-xs uppercase tracking-[0.22em] text-foreground/50">
+              {content.brand.tagline}
             </div>
           </div>
         </div>
-        <nav className="hidden items-center gap-8 text-sm font-medium text-charcoal/70 md:flex">
-          <Link href="/" className="transition hover:text-charcoal">
-            Landing
-          </Link>
-          <Link href="/library" className="transition hover:text-charcoal">
-            Library
-          </Link>
-          <Link href="/pricing" className="transition hover:text-charcoal">
-            Pricing
-          </Link>
+        <nav className="hidden items-center gap-8 text-sm font-medium text-foreground/70 md:flex">
+          {content.links.map((link) => (
+            <Link key={link.href} href={link.href} className="transition hover:text-foreground">
+              {link.label}
+            </Link>
+          ))}
         </nav>
         <div className="hidden md:block">
-          <Button href={gumroadUrl} variant="primary" size="sm" target="_blank" rel="noreferrer">
-            Get Access
+          <Button asChild variant={content.cta.variant ?? "primary"} size="sm">
+            <Link href={content.cta.href}>{content.cta.label}</Link>
           </Button>
         </div>
         <div className="md:hidden">
-          <Button href="/pricing" variant="secondary" size="sm">
-            Pricing
+          <Button asChild variant="secondary" size="sm">
+            <Link href="/pricing">Pricing</Link>
           </Button>
         </div>
       </div>

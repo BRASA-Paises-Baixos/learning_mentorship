@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
 import ContentDetail from "../../../../components/library/ContentDetail";
 import Section from "../../../../components/ui/Section";
-import { getLibraryItemBySlug } from "../../../../lib/sanity/queries";
+import { getContentProvider } from "../../../../lib/content/provider";
+import { getRevalidateSeconds } from "../../../../lib/revalidate";
 
-export const revalidate = 60;
+export const revalidate = getRevalidateSeconds();
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -11,7 +12,8 @@ type PageProps = {
 
 export default async function ContentDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const item = await getLibraryItemBySlug(id);
+  const provider = getContentProvider();
+  const item = await provider.getLibraryItemBySlug(id);
 
   if (!item) {
     notFound();

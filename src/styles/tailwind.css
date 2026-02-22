@@ -4,14 +4,38 @@
 @layer base {
   :root {
     color-scheme: light;
+    --surface: 246 241 230;
+    --surface-2: 255 255 255;
+    --surface-3: 245 248 250;
+    --foreground: 46 46 46;
+    --muted: 87 96 105;
+    --primary: 27 79 191;
+    --primary-foreground: 246 241 230;
+    --accent: 27 109 141;
+    --accent-foreground: 246 241 230;
+    --success: 120 178 74;
+    --warning: 242 194 75;
+    --info: 47 166 165;
+    --error: 244 122 90;
   }
 
   body {
-    @apply bg-canvas text-charcoal antialiased;
+    @apply bg-surface text-foreground antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading text-foreground;
+  }
+
+  p {
+    @apply text-body text-foreground/80;
   }
 
   ::selection {
-    @apply bg-royal text-canvas;
+    @apply bg-primary text-primary-foreground;
   }
 }
 
@@ -19,5 +43,13 @@
   .grain {
     background-image: radial-gradient(rgba(27, 79, 191, 0.08) 1px, transparent 0);
     background-size: 18px 18px;
+  }
+
+  .section {
+    @apply py-section;
+  }
+
+  .section-sm {
+    @apply py-section-sm;
   }
 }

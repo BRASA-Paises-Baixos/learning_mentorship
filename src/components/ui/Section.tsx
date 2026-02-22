@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { cn } from "../../lib/utils";
 
 type SectionProps = {
   eyebrow?: string;
@@ -6,6 +7,7 @@ type SectionProps = {
   subtitle?: string;
   children?: ReactNode;
   className?: string;
+  compact?: boolean;
 };
 
 export default function Section({
@@ -13,24 +15,23 @@ export default function Section({
   title,
   subtitle,
   children,
-  className = "",
+  className,
+  compact = false,
 }: SectionProps) {
   return (
-    <section className={`py-16 sm:py-20 ${className}`}>
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 sm:px-8 lg:px-12">
+    <section className={cn(compact ? "section-sm" : "section", className)}>
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-gutter">
         <div className="space-y-4">
           {eyebrow ? (
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-royal">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               {eyebrow}
             </div>
           ) : null}
-          <h2 className="font-heading text-3xl font-semibold text-charcoal sm:text-4xl">
+          <h2 className="font-heading text-title font-semibold text-foreground">
             {title}
           </h2>
           {subtitle ? (
-            <p className="max-w-2xl text-base leading-relaxed text-charcoal/70">
-              {subtitle}
-            </p>
+            <p className="max-w-2xl text-subtitle text-foreground/70">{subtitle}</p>
           ) : null}
         </div>
         {children}
