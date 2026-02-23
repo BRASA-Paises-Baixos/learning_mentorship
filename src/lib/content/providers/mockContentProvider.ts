@@ -15,14 +15,14 @@ const siteShell: SiteShellContent = {
     },
     links: [
       { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
       { label: "Library", href: "/library" },
-      { label: "Mentorship", href: "/#mentorship" },
       { label: "Pricing", href: "/pricing" },
-      { label: "Contact", href: "/#contact" },
+      { label: "Contact", href: "/contact" },
     ],
     cta: {
-      label: "Get Access",
-      href: "/pricing",
+      label: "Apply",
+      href: "/apply",
       variant: "primary",
     },
   },
@@ -30,11 +30,11 @@ const siteShell: SiteShellContent = {
     summary:
       "BRASA is a mentorship and learning platform for builders who want steady momentum, expert guidance, and a clear path from idea to launch.",
     links: [
-      { label: "About", href: "/#about" },
-      { label: "Mentors", href: "/#mentors" },
-      { label: "FAQ", href: "/#faq" },
-      { label: "Scholarship", href: "/#impact" },
-      { label: "Contact", href: "/#contact" },
+      { label: "About", href: "/about" },
+      { label: "Apply", href: "/apply" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Library", href: "/library" },
+      { label: "Contact", href: "/contact" },
     ],
     legal: "BRASA Platform · Amsterdam, NL · Built for the global BRASA community",
   },
@@ -55,8 +55,8 @@ const homePageContent: HomePageContent = {
       title: "Mentorship built for steady, ambitious builders.",
       subtitle:
         "A structured learning path, hands-on mentor guidance, and practical tools for the BRASA community.",
-      primaryCta: { label: "Join the platform", href: "/pricing", variant: "primary" },
-      secondaryCta: { label: "Explore the library", href: "/library", variant: "secondary" },
+      primaryCta: { label: "Apply for Mentorship", href: "/apply", variant: "primary" },
+      secondaryCta: { label: "Learn about BRASA", href: "/about", variant: "secondary" },
       highlights: [
         "Monthly mentor circles and office hours",
         "Curated playbooks, templates, and checklists",
@@ -260,10 +260,11 @@ const homePageContent: HomePageContent = {
       ],
     },
     cta: {
-      title: "Ready to build with more clarity?",
-      subtitle: "Join BRASA and move with a support system that respects your time.",
-      primaryCta: { label: "Start membership", href: "/pricing", variant: "primary" },
-      secondaryCta: { label: "Book a call", href: "/#contact", variant: "secondary" },
+      title: "Ready to apply for the mentorship track?",
+      subtitle:
+        "Tell us your goals and stage. We review each application before opening subscription access.",
+      primaryCta: { label: "Apply now", href: "/apply", variant: "primary" },
+      secondaryCta: { label: "Contact BRASA", href: "/contact", variant: "secondary" },
     },
     contact: {
       eyebrow: "Contact",

@@ -1,13 +1,14 @@
 import type { PaymentProvider } from "../types";
+import { getPlanReaderUrl } from "../../gumroad/config";
 
 export const mockPaymentProvider: PaymentProvider = {
   getCheckoutUrl(productId: string) {
-    return `/pricing?plan=${encodeURIComponent(productId)}`;
+    return getPlanReaderUrl(productId);
   },
   getEmbedSnippet(productId: string) {
     return {
-      title: "Mock Checkout",
-      description: `Checkout placeholder for ${productId}. Connect Gumroad to activate payments.`,
+      title: "Fake Subscription",
+      description: `Plan "${productId}" currently routes to an in-platform PDF reader.`,
     };
   },
 };

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { CTAContent } from "../../lib/content/models";
-import Section from "../ui/Section";
 import Button from "../ui/Button";
 import Layout from "../ui/Layout";
 

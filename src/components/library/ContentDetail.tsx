@@ -23,7 +23,7 @@ export default function ContentDetail({ item }: { item: LibraryItem }) {
             <Link href="/library">Back to library</Link>
           </Button>
           <Button asChild variant="primary" size="md">
-            <Link href="/pricing">Unlock full access</Link>
+            <Link href="/apply">Apply for access</Link>
           </Button>
         </div>
       </div>

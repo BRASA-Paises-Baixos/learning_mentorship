@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Inter, Playfair_Display } from "next/font/google";
 import "../styles/tailwind.css";
 import Footer from "../components/ui/Footer";
@@ -32,16 +33,18 @@ export default async function RootLayout({
   const siteShell = await provider.getSiteShellContent();
 
   return (
-    <html lang="en">
-      <body className={`${playfair.variable} ${inter.variable} font-body`}>
-        <div className="min-h-screen bg-surface text-foreground">
-          <Header content={siteShell.navigation} />
-          <div className="grain">
-            <main>{children}</main>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${playfair.variable} ${inter.variable} font-body`}>
+          <div className="min-h-screen bg-surface text-foreground">
+            <Header content={siteShell.navigation} />
+            <div className="grain">
+              <main>{children}</main>
+            </div>
+            <Footer content={siteShell.footer} />
           </div>
-          <Footer content={siteShell.footer} />
-        </div>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

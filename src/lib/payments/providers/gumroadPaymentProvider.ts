@@ -1,13 +1,14 @@
 import type { PaymentProvider } from "../types";
+import { getGumroadProductUrl } from "../../gumroad/config";
 
 export const gumroadPaymentProvider: PaymentProvider = {
   getCheckoutUrl() {
-    return "https://gumroad.com";
+    return getGumroadProductUrl();
   },
   getEmbedSnippet(productId: string) {
     return {
-      title: "Gumroad Embed",
-      description: `Gumroad embed placeholder for ${productId}.`,
+      title: "Gumroad Checkout",
+      description: `Plan "${productId}" redirects to Gumroad purchase checkout.`,
     };
   },
 };

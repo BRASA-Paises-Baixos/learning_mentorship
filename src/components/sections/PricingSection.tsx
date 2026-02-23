@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { PricingContent } from "../../lib/content/models";
+import { getGumroadProductId, getPlanReaderUrl } from "../../lib/gumroad/config";
 import type { PaymentProvider } from "../../lib/payments/types";
+import GumroadCheckoutButton from "../payments/GumroadCheckoutButton";
 import Button from "../ui/Button";
 import Card from "../ui/Card";
 import Section from "../ui/Section";
@@ -8,10 +10,14 @@ import Section from "../ui/Section";
 export default function PricingSection({
   content,
   paymentProvider,
+  allowDirectAccess = false,
 }: {
   content: PricingContent;
-  paymentProvider: PaymentProvider;
+  paymentProvider?: PaymentProvider;
+  allowDirectAccess?: boolean;
 }) {
+  const productId = getGumroadProductId();
+
   return (
     <Section eyebrow={content.eyebrow} title={content.title} subtitle={content.subtitle}>
       <div className="grid gap-6 lg:grid-cols-3">
@@ -42,11 +48,19 @@ export default function PricingSection({
                 </div>
               ))}
             </div>
-            <Button asChild variant={plan.highlight ? "primary" : "secondary"} size="md">
-              <Link href={paymentProvider.getCheckoutUrl(plan.id)}>
-                Choose {plan.name}
-              </Link>
-            </Button>
+            {allowDirectAccess && paymentProvider ? (
+              <GumroadCheckoutButton
+                checkoutUrl={paymentProvider.getCheckoutUrl(plan.id)}
+                returnUrl={getPlanReaderUrl(plan.id)}
+                productId={productId}
+                label={`Access ${plan.name}`}
+                variant={plan.highlight ? "primary" : "secondary"}
+              />
+            ) : (
+              <Button asChild variant={plan.highlight ? "primary" : "secondary"} size="md">
+                <Link href="/apply">Apply for {plan.name}</Link>
+              </Button>
+            )}
           </Card>
         ))}
       </div>

@@ -23,7 +23,7 @@ export default function ProductsSection({ content }: { content: ProductSectionCo
             <div className="mt-4 text-sm font-semibold text-foreground">{product.price}</div>
             <div className="mt-6">
               <Button asChild variant={product.highlight ? "primary" : "secondary"} size="md">
-                <Link href="/pricing">{product.ctaLabel}</Link>
+                <Link href="/apply">{product.ctaLabel}</Link>
               </Button>
             </div>
           </Card>

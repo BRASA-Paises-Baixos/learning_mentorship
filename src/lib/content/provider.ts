@@ -20,7 +20,7 @@ export function getContentProvider(): ContentProvider {
   const providerName =
     process.env.NEXT_PUBLIC_CONTENT_PROVIDER ??
     process.env.CONTENT_PROVIDER ??
-    "mock";
+    "sanity";
 
-  return PROVIDER_MAP[providerName] ?? mockContentProvider;
+  return PROVIDER_MAP[providerName] ?? sanityContentProvider;
 }

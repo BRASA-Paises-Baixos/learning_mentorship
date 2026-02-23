@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { NavigationContent } from "../../lib/content/models";
 import Button from "./Button";
+import AuthControls from "../auth/AuthControls";
 
 export default function Header({ content }: { content: NavigationContent }) {
   return (
@@ -26,15 +27,17 @@ export default function Header({ content }: { content: NavigationContent }) {
             </Link>
           ))}
         </nav>
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
           <Button asChild variant={content.cta.variant ?? "primary"} size="sm">
             <Link href={content.cta.href}>{content.cta.label}</Link>
           </Button>
+          <AuthControls />
         </div>
-        <div className="md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
           <Button asChild variant="secondary" size="sm">
-            <Link href="/pricing">Pricing</Link>
+            <Link href="/apply">Apply</Link>
           </Button>
+          <AuthControls />
         </div>
       </div>
     </header>
